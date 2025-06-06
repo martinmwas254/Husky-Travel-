@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Husky Travels - Adventure Awaits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🐺";
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIhdiNpBFBGfD-7tGNIy28fZZH22AX7IXy0w&s'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.6);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+/* Destinations Grid */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.destination-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.card-image {
+    height: 250px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.card-price {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(102, 126, 234, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                backdrop-filter: blur(20px);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .nav-container {
+                padding: 1rem 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#home" class="logo" id="logo">Husky Travels</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in">
+            <h1>Adventure Awaits</h1>
+            <p>Discover breathtaking destinations with Husky Travels. From snowy mountains to exotic beaches, we'll take you on the journey of a lifetime.</p>
+            <a href="#destinations" class="cta-button" id="cta-btn">Explore Destinations</a>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="section" id="destinations">
+        <h2 class="section-title fade-in">Popular Destinations</h2>
+        
+        <!-- Search Bar -->
+        <div class="search-container fade-in">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="destination-search" placeholder="Search destinations...">
+        </div>
+
+        <div class="destinations-grid fade-in" id="destinations-grid">
+            <!-- Destinations will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title fade-in">Our Services</h2>
+        <div class="services-grid fade-in">
+            <div class="service-item">
+                <div class="service-icon">🗺️</div>
+                <h3 class="service-title">Tour Packages</h3>
+                <p>Carefully crafted tour packages that combine adventure, culture, and relaxation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title fade-in">About Husky Travels</h2>
+        <div class="fade-in" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                Founded in 2020, Husky Travels has been connecting adventurous souls with incredible destinations around the world. 
+                Our team of experienced travel experts is passionate about creating unforgettable experiences that go beyond the ordinary.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Whether you're seeking a peaceful retreat, an adrenaline-pumping adventure, or a cultural immersion, 
+                we're here to make your travel dreams come true with personalized service and attention to detail.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <form class="contact-form fade-in" id="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Interested Destination</label>
+                <select id="destination" name="destination">
+                    <option value="">Select a destination</option>
+                    <option value="alaska">Alaska Wilderness</option>
+                    <option value="norway">Northern Norway</option>
+                    <option value="patagonia">Patagonia Adventure</option>
+                    <option value="himalaya">Himalayan Trek</option>
+                    <option value="iceland">Iceland Explorer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about your dream trip..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submit-btn">
+                Send Message
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Husky Travels</h3>
+                <p>Your adventure companion since 2020</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="YouTube">📺</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#destinations">Destinations</a></p>
+                <p><a href="#services">Services</a></p>
+                <p><a href="#about">About Us</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 info@huskytravels.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>📍 123 Adventure St, Travel City, TC 12345</p>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #555; padding-top: 2rem; margin-top: 2rem;">
+            <p>&copy; 2025 Husky Travels. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Destination Details -->
+    <div id="destination-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample destination data
+        const destinations = [
+    {
+        id: 1,
+        name: "Karura Forest",
+        description: "Enjoy serene walking trails, waterfalls, and a peaceful escape within Nairobi's green heart.",
+        price: "$50",
+        duration: "1 day",
+        highlights: ["Waterfalls", "Nature Trails", "Cycling", "Picnicking"],
+        image: "https://thumbs.dreamstime.com/b/walking-track-karura-forest-nairobi-242156697.jpg"
+    },
+    {
+        id: 2,
+        name: "Mt. Kenya National Reserve",
+        description: "Explore Kenya’s highest mountain with stunning alpine scenery and diverse wildlife.",
+        price: "$350",
+        duration: "3 days",
+        highlights: ["Mountain Climbing", "Wildlife Viewing", "Scenic Hikes", "Camping"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mount_Kenya_Batian.jpg"
+    },
+    {
+        id: 3,
+        name: "Aberdare Range Forest",
+        description: "Discover misty highlands, rich biodiversity, and spectacular waterfalls in the Aberdares.",
+        price: "$300",
+        duration: "2 days",
+        highlights: ["Waterfalls", "Elephants & Buffalo", "Nature Walks", "Bird Watching"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Aberdare_Range_Kenya.jpg"
+    },
+    {
+        id: 4,
+        name: "Camp Dunda",
+        description: "Perfect weekend getaway offering riverside camping, ziplining, and forest adventures.",
+        price: "$100",
+        duration: "2 days",
+        highlights: ["Ziplining", "River Views", "Forest Trails", "Bonfires"],
+        image: "https://campdunda.com/images/slider/dunda_02.jpg"
+    },
+    {
+        id: 5,
+        name: "Lake Naivasha",
+        description: "A freshwater lake famous for its hippos, birdlife, and scenic boat rides.",
+        price: "$150",
+        duration: "1 day",
+        highlights: ["Boat Riding", "Bird Watching", "Hippo Viewing", "Crescent Island Tour"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/4/47/Lake_Naivasha_%281%29.jpg"
+    },
+    {
+        id: 6,
+        name: "Lake Nakuru National Park",
+        description: "Famous for pink flamingos and rhinos, this lake park is a top wildlife destination.",
+        price: "$180",
+        duration: "1 day",
+        highlights: ["Flamingos", "Rhino Sanctuary", "Game Drives", "Baboon Cliff Viewpoint"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Lake_Nakuru_National_Park_%2816339504507%29.jpg"
+    },
+    {
+        id: 7,
+        name: "14 Falls",
+        description: "Marvel at the power of 14 cascading waterfalls in this popular day-trip destination.",
+        price: "$60",
+        duration: "1 day",
+        highlights: ["Waterfall Views", "Boat Rides", "Photography", "Nature Walks"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/14_Falls_Kenya.jpg"
+    }
+];
+
+        // DOM Elements
+        const header = document.getElementById('header');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const destinationsGrid = document.getElementById('destinations-grid');
+        const searchInput = document.getElementById('destination-search');
+        const contactForm = document.getElementById('contact-form');
+        const modal = document.getElementById('destination-modal');
+        const modalBody = document.getElementById('modal-body');
+        const closeModal = document.querySelector('.close');
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Render destinations
+        function renderDestinations(destinationsToRender = destinations) {
+            destinationsGrid.innerHTML = '';
+            
+            destinationsToRender.forEach(destination => {
+                const card = document.createElement('div');
+                card.className = 'destination-card';
+                card.innerHTML = `
+                    <div class="card-image" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.7;">
+                            ${destination.image}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${destination.name}</h3>
+                        <p>${destination.description}</p>
+                        <p style="color: #666; margin: 0.5rem 0;"><strong>Duration:</strong> ${destination.duration}</p>
+                        <div class="card-price">${destination.price}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openDestinationModal(destination));
+                destinationsGrid.appendChild(card);
+            });
+        }
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredDestinations = destinations.filter(destination =>
+                destination.name.toLowerCase().includes(searchTerm) ||
+                destination.description.toLowerCase().includes(searchTerm) ||
+                destination.highlights.some(highlight => 
+                    highlight.toLowerCase().includes(searchTerm)
+                )
+            );
+            renderDestinations(filteredDestinations);
+        });
+
+        // Open destination modal
+        function openDestinationModal(destination) {
+            modalBody.innerHTML = `
+                <h2 style="color: #2c3e50; margin-bottom: 1rem;">${destination.name}</h2>
+                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">${destination.image}</div>
+                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">${destination.description}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                        <strong>Duration:</strong><br>${destination.duration}
+                    </div>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                        <strong>Price:</strong><br><span style="color: #e74c3c; font-size: 1.2rem;">${destination.price}</span>
+                    </div>
+                </div>
+                
+                <h3 style="color: #2c3e50; margin-bottom: 1rem;">Highlights:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    ${destination.highlights.map(highlight => 
+                        `<li style="background: #667eea; color: white; padding: 0.5rem 1rem; margin: 0.5rem 0; border-radius: 20px; display: inline-block; margin-right: 0.5rem;">✓ ${highlight}</li>`
+                    ).join('')}
+                </ul>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button style="background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer;" onclick="bookDestination('${destination.name}')">
+                        Book Now
+                    </button>
+                </div>
+            `;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        closeModal.addEventListener('click', closeDestinationModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeDestinationModal();
+            }
+        });
+
+        function closeDestinationModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Book destination function
+        function bookDestination(destinationName) {
+            alert(`Booking request for ${destinationName} has been submitted! We'll contact you shortly with more details.`);
+            closeDestinationModal();
+            
+            // Scroll to contact form
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Pre-fill destination in contact form
+            const destinationSelect = document.getElementById('destination');
+            const option = Array.from(destinationSelect.options).find(opt => 
+                opt.text.includes(destinationName.split(' ')[0])
+            );
+            if (option) {
+                destinationSelect.value = option.value;
+            }
+        }
+
+        // Contact form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+                
+                // Show success message
+                alert(`Thank you, ${data.name}! Your message has been sent successfully. We'll get back to you within 24 hours.`);
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Add some visual feedback
+                submitBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+                submitBtn.innerHTML = '✓ Message Sent!';
+                
+                setTimeout(() => {
+                    submitBtn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                    submitBtn.innerHTML = originalText;
+                }, 3000);
+                
+            }, 2000);
+        });
+
+        // Newsletter subscription (if you want to add this feature)
+        function subscribeNewsletter() {
+            const email = prompt('Enter your email to subscribe to our newsletter:');
+            if (email && email.includes('@')) {
+                alert(`Thank you for subscribing! You'll receive travel tips and exclusive deals at ${email}`);
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeDestinationModal();
+            }
+        });
+
+        // Weather widget simulation (you can integrate with a real weather API)
+        function updateWeatherInfo() {
+            const weatherInfo = document.getElementById('weather-info');
+            if (weatherInfo) {
+                const cities = ['Thika', 'Nairobi', 'Embu', 'Naivasha', 'Nakuru'];
+                const temps = ['-2°C', '-8°C', '-5°C', '3°C', '12°C'];
+                const conditions = ['❄️ Snowy', '🌨️ Blizzard', '☁️ Cloudy', '🌤️ Partly Cloudy', '☀️ Sunny'];
+                
+                const randomIndex = Math.floor(Math.random() * cities.length);
+                weatherInfo.innerHTML = `${cities[randomIndex]}: ${temps[randomIndex]} ${conditions[randomIndex]}`;
+            }
+        }
+
+        // Testimonials carousel (if you want to add testimonials)
+        const testimonials = [
+            {
+                name: "Sarah Johnson",
+                location: "New York, USA",
+                text: "Husky Travels made my dream trip to Alaska unforgettable! The attention to detail was incredible.",
+                rating: 5
+            },
+            {
+                name: "Marco Rodriguez",
+                location: "Barcelona, Spain",
+                text: "The Northern Lights tour in Norway was absolutely magical. Highly recommend Husky Travels!",
+                rating: 5
+            },
+            {
+                name: "Emily Chen",
+                location: "Tokyo, Japan",
+                text: "Professional service and amazing destinations. My Patagonia adventure exceeded all expectations.",
+                rating: 5
+            }
+        ];
+
+        // Initialize page
+        function initializePage() {
+            renderDestinations();
+            
+            // Add some dynamic content loading
+            setTimeout(() => {
+                updateWeatherInfo();
+            }, 1000);
+            
+            // Add scroll-triggered animations
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.hero');
+                if (parallax) {
+                    const speed = scrolled * 0.5;
+                    parallax.style.transform = `translateY(${speed}px)`;
+                }
+            });
+        }
+
+        // Cookie consent (basic implementation)
+        function showCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c3e50;
+                    color: white;
+                    padding: 1rem;
+                    text-align: center;
+                    z-index: 1000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                `;
+                
+                banner.innerHTML = `
+                    <span>This website uses cookies to enhance your experience. By continuing to browse, you agree to our use of cookies.</span>
+                    <button onclick="acceptCookies()" style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Accept</button>
+                `;
+                
+                document.body.appendChild(banner);
+                
+                window.acceptCookies = function() {
+                    localStorage.setItem('cookieConsent', 'true');
+                    banner.remove();
+                };
+            }
+        }
+
+        // Error handling for images and content
+        function handleImageErrors() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                });
+            });
+        }
+
+        // Performance optimization - lazy loading
+        function setupLazyLoading() {
+            const cards = document.querySelectorAll('.destination-card');
+            
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                cardObserver.observe(card);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+            setupLazyLoading();
+            handleImageErrors();
+            
+            // Show cookie consent after a delay
+            setTimeout(showCookieConsent, 2000);
+            
+            // Add some interactive elements
+            const logo = document.getElementById('logo');
+            logo.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Service Worker registration for offline functionality (basic)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Dark/Light mode toggle (bonus feature)
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('darkMode');
+        if (savedTheme === 'true') {
+            document.body.classList.add('dark-theme');
+        }
+
+        // Add resize handler for responsive adjustments
+        window.addEventListener('resize', () => {
+            // Close mobile menu on resize
+            if (window.innerWidth > 768) {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Print styles handler
+        window.addEventListener('beforeprint', () => {
+            // Hide unnecessary elements when printing
+            document.querySelectorAll('.modal, .mobile-menu').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('afterprint', () => {
+            // Restore elements after printing
+            document.querySelectorAll('.modal, .mobile-menu').forEach(el => {
+                el.style.display = '';
+            });
+        });
+    </script>
+</body>
+</html>

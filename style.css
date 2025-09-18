@@ -1,0 +1,405 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: #333;
+    background-color: #f8f5f9;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(138, 43, 226, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #8A2BE2, #FF1493);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo span {
+    font-size: 12px;
+    color: #8A2BE2;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.hero {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBgKse7Tplc99d94mUIhyTUtWNuPt-Zx6_cg&s'); /* Replace with your image path */
+    background-size: cover;       /* Makes the image cover the whole section */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    height: 100vh;                /* Full screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Optional: Add a dark overlay for better text visibility */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust opacity for darkness */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Keep text above overlay */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ff5a8c; /* pinkish button */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #e04678;
+}
+
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #8A2BE2;
+}
+
+/* Slideshow Background */
+.slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.slide.active {
+    opacity: 0.2;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(138, 43, 226, 0.15);
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #4B0082;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #8A2BE2, #FF1493);
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+}
+
+/* Tours Section */
+.section-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    color: #4B0082;
+    font-size: 2.5rem;
+}
+
+.tours {
+    padding: 40px 5%;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.tour-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.tour-card {
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(138, 43, 226, 0.2);
+}
+
+.tour-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tour-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.tour-card:hover .tour-img img {
+    transform: scale(1.1);
+}
+
+.tour-info {
+    padding: 20px;
+}
+
+.tour-info h3 {
+    color: #4B0082;
+    margin-bottom: 10px;
+}
+
+.tour-info p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.tour-date {
+    color: #8A2BE2;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* About Section */
+.about {
+    padding: 80px 5%;
+    background: linear-gradient(to right, #f8f5f9, #f0e6f5);
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    color: #4B0082;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.founding-year {
+    font-size: 1.2rem;
+    color: #8A2BE2;
+    font-weight: 600;
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(138, 43, 226, 0.1);
+    border-radius: 20px;
+}
+
+/* Footer */
+footer {
+    background: #4B0082;
+    color: white;
+    padding: 50px 5% 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #FF1493;
+}
+
+.footer-section p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.socials a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    color: white;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.socials a:hover {
+    background: #FF1493;
+    transform: translateY(-5px);
+}
+
+.links ul {
+    list-style: none;
+}
+
+.links ul li {
+    margin-bottom: 10px;
+}
+
+.links ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.links ul li a:hover {
+    color: #FF1493;
+}
+
+.contact span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 5%;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 5px 10px;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .tour-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .footer-section {
+        flex: 100%;
+    }
+}

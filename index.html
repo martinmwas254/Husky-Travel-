@@ -3,1204 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Husky Travels - Adventure Awaits</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Header Styles */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .header.scrolled {
-            background: rgba(102, 126, 234, 0.95);
-            backdrop-filter: blur(20px);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo::before {
-            content: "🐺";
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            color: #ffd700;
-            transform: translateY(-2px);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffd700;
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIhdiNpBFBGfD-7tGNIy28fZZH22AX7IXy0w&s'); /* Replace with your actual image path */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh; /* Full viewport height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,107,107,0.6);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 5rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-/* Destinations Grid */
-.destinations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.destination-card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.destination-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.card-image {
-    height: 250px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    position: relative;
-    overflow: hidden;
-}
-
-.card-content {
-    padding: 1.5rem;
-}
-
-.card-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-}
-
-.card-price {
-    color: #e74c3c;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-}
-
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-item {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #ffd700;
-        }
-
-        .footer-section a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: #ffd700;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #667eea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #ffd700;
-            transform: translateY(-3px);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: white;
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: rgba(102, 126, 234, 0.95);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                backdrop-filter: blur(20px);
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .mobile-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .mobile-menu.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .destinations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 3rem 5%;
-            }
-
-            .nav-container {
-                padding: 1rem 5%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .modal-content {
-                margin: 10% auto;
-                padding: 1.5rem;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Search Bar */
-        .search-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-    </style>
+    <title> Husky Tours </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav-container">
-            <a href="#home" class="logo" id="logo">Husky Travels</a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#destinations">Destinations</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Husky Tours</h1>
+            <span>Est. 2022</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tours</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            <div class="mobile-menu" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
+    <!-- Background Slideshow -->
+    <div class="slideshow">
+        <div class="slide active" style="background-image: url('https://www.instagram.com/p/DMUjIXnqvjj/');"></div>
+        <div class="slide" style="background-image: url('https://www.instagram.com/reel/DGxPnZ4taFl/');"></div>
+        <div class="slide" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS64D1YOKUzIClZOSgWtwoeW3qR_MefXNcni7IVhfwmQQoH2N7Zn0wxT3VsDKLDBru094I&usqp=CAU');"></div>
+        <div class="slide" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpI25sEs-f32VZ1_Bp0KLs-Z41zn4vs4E7G0JUDPomLKjYMeqilXW5HWIdYqvMHs_KfRY&usqp=CAU');"></div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content fade-in">
-            <h1>Adventure Awaits</h1>
-            <p>Discover breathtaking destinations with Husky Travels. From snowy mountains to exotic beaches, we'll take you on the journey of a lifetime.</p>
-            <a href="#destinations" class="cta-button" id="cta-btn">Explore Destinations</a>
+    <section class="hero">
+        <div class="hero-content">
+            <img src="images/hidden-gems.jpg" alt="Scenic Travel" class="hero-img">
+            <h2>Discover the World's Hidden Gems</h2>
+            <p>Embark on unforgettable journeys with our expertly crafted tours. From majestic mountains to pristine beaches, we'll take you there in style and comfort.</p>
+            <a href="#" class="btn">Explore Tours</a>
         </div>
     </section>
+    
 
-    <!-- Destinations Section -->
-    <section class="section" id="destinations">
-        <h2 class="section-title fade-in">Popular Destinations</h2>
-        
-        <!-- Search Bar -->
-        <div class="search-container fade-in">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="destination-search" placeholder="Search destinations...">
-        </div>
-
-        <div class="destinations-grid fade-in" id="destinations-grid">
-            <!-- Destinations will be loaded dynamically -->
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section" id="services">
-        <h2 class="section-title fade-in">Our Services</h2>
-        <div class="services-grid fade-in">
-            <div class="service-item">
-                <div class="service-icon">🗺️</div>
-                <h3 class="service-title">Tour Packages</h3>
-                <p>Carefully crafted tour packages that combine adventure, culture, and relaxation.</p>
+    <!-- Upcoming Tours Section -->
+    <section class="tours">
+        <h2 class="section-title">Upcoming Tours</h2>
+        <div class="tour-container">
+            <!-- Tour Card 1 -->
+            <div class="tour-card">
+                <div class="tour-img">
+                    <img src="data:image/jpeg;base64,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" alt="Naivasha, Kenya">
+                </div>
+                <div class="tour-info">
+                    <h3>Naivasha Experience</h3>
+                    <p>Explore the beautiful scenary of naivasha the slow waves of the lake and the flamingoes .</p>
+                    <span class="tour-date">October 6th, 2025</span>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Tour Card 2 -->
+            <div class="tour-card">
+                <div class="tour-img">
+                    <img src="https://i.ytimg.com/vi/QIPivP03oEo/maxresdefault.jpg " alt="Namanga, Kenya ">
+                </div>
+                <div class="tour-info">
+                    <h3>Namanga View point </h3>
+                    <p>Windows down, music up, snacks on deck—every turn is a surprise and every stop a story.</p>
+                    <span class="tour-date">September 27th, 2025</span>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Tour Card 3 -->
+            <div class="tour-card">
+                <div class="tour-img">
+                    <img src="https://www.tsavonationalparkkenya.com/wp-content/uploads/2022/07/dianireefbeachresortspa2-750x450.jpg" alt="Mombasa,Kenya">
+                </div>
+                <div class="tour-info">
+                    <h3>Mombasa Beach Experience</h3>
+                    <p>Cruising along the coast with salty air in your hair, music bouncing with the waves, and the sun kissing the horizon—every stop is a chance to splash, snack, and soak up the view.</p>
+                    <span class="tour-date">November 31st, 2025</span>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section" id="about">
-        <h2 class="section-title fade-in">About Husky Travels</h2>
-        <div class="fade-in" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
-                Founded in 2020, Husky Travels has been connecting adventurous souls with incredible destinations around the world. 
-                Our team of experienced travel experts is passionate about creating unforgettable experiences that go beyond the ordinary.
-            </p>
-            <p style="font-size: 1.1rem; line-height: 1.8;">
-                Whether you're seeking a peaceful retreat, an adrenaline-pumping adventure, or a cultural immersion, 
-                we're here to make your travel dreams come true with personalized service and attention to detail.
-            </p>
+    <section class="about">
+        <div class="about-content">
+            <h2>About Husky Tours</h2>
+            <p>For over a decade, Husky Tours has been creating exceptional travel experiences for adventurers worldwide. Our carefully curated tours blend cultural immersion, natural wonders, and luxurious comfort to create memories that last a lifetime.</p>
+            <p>Our team of expert guides and travel planners ensure every detail is perfect, from accommodation to transportation and unique local experiences.</p>
+            <div class="founding-year">Founded in 2022</div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <h2 class="section-title fade-in">Get In Touch</h2>
-        <form class="contact-form fade-in" id="contact-form">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="destination">Interested Destination</label>
-                <select id="destination" name="destination">
-                    <option value="">Select a destination</option>
-                    <option value="alaska">Alaska Wilderness</option>
-                    <option value="norway">Northern Norway</option>
-                    <option value="patagonia">Patagonia Adventure</option>
-                    <option value="himalaya">Himalayan Trek</option>
-                    <option value="iceland">Iceland Explorer</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell us about your dream trip..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn" id="submit-btn">
-                Send Message
-            </button>
-        </form>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Husky Travels</h3>
-                <p>Your adventure companion since 2020</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">📘</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="Twitter">🐦</a>
-                    <a href="#" aria-label="YouTube">📺</a>
+                <h3>Husky Tours</h3>
+                <p>Creating unforgettable travel experiences since 2022. Join us on a journey of discovery and adventure.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-            <div class="footer-section">
+            
+            <div class="footer-section links">
                 <h3>Quick Links</h3>
-                <p><a href="#destinations">Destinations</a></p>
-                <p><a href="#services">Services</a></p>
-                <p><a href="#about">About Us</a></p>
-                <p><a href="#contact">Contact</a></p>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tours</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
             </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p>📧 info@huskytravels.com</p>
-                <p>📞 +1 (555) 123-4567</p>
-                <p>📍 123 Adventure St, Travel City, TC 12345</p>
+            
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <span><i class="fas fa-phone"></i> +254 704 655 609</span>
+                <span><i class="fas fa-envelope"></i> info@huskytours.com</span>
+                <span><i class="fas fa-map-marker-alt"></i> Nairobi, Dagoretti South </span>
             </div>
         </div>
-        <div style="border-top: 1px solid #555; padding-top: 2rem; margin-top: 2rem;">
-            <p>&copy; 2025 Husky Travels. All rights reserved.</p>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025. Husky Tours All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Modal for Destination Details -->
-    <div id="destination-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modal-body">
-                <!-- Modal content will be inserted here -->
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Sample destination data
-        const destinations = [
-    {
-        id: 1,
-        name: "Karura Forest",
-        description: "Enjoy serene walking trails, waterfalls, and a peaceful escape within Nairobi's green heart.",
-        price: "$50",
-        duration: "1 day",
-        highlights: ["Waterfalls", "Nature Trails", "Cycling", "Picnicking"],
-        image: "https://thumbs.dreamstime.com/b/walking-track-karura-forest-nairobi-242156697.jpg"
-    },
-    {
-        id: 2,
-        name: "Mt. Kenya National Reserve",
-        description: "Explore Kenya’s highest mountain with stunning alpine scenery and diverse wildlife.",
-        price: "$350",
-        duration: "3 days",
-        highlights: ["Mountain Climbing", "Wildlife Viewing", "Scenic Hikes", "Camping"],
-        image: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mount_Kenya_Batian.jpg"
-    },
-    {
-        id: 3,
-        name: "Aberdare Range Forest",
-        description: "Discover misty highlands, rich biodiversity, and spectacular waterfalls in the Aberdares.",
-        price: "$300",
-        duration: "2 days",
-        highlights: ["Waterfalls", "Elephants & Buffalo", "Nature Walks", "Bird Watching"],
-        image: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Aberdare_Range_Kenya.jpg"
-    },
-    {
-        id: 4,
-        name: "Camp Dunda",
-        description: "Perfect weekend getaway offering riverside camping, ziplining, and forest adventures.",
-        price: "$100",
-        duration: "2 days",
-        highlights: ["Ziplining", "River Views", "Forest Trails", "Bonfires"],
-        image: "https://campdunda.com/images/slider/dunda_02.jpg"
-    },
-    {
-        id: 5,
-        name: "Lake Naivasha",
-        description: "A freshwater lake famous for its hippos, birdlife, and scenic boat rides.",
-        price: "$150",
-        duration: "1 day",
-        highlights: ["Boat Riding", "Bird Watching", "Hippo Viewing", "Crescent Island Tour"],
-        image: "https://upload.wikimedia.org/wikipedia/commons/4/47/Lake_Naivasha_%281%29.jpg"
-    },
-    {
-        id: 6,
-        name: "Lake Nakuru National Park",
-        description: "Famous for pink flamingos and rhinos, this lake park is a top wildlife destination.",
-        price: "$180",
-        duration: "1 day",
-        highlights: ["Flamingos", "Rhino Sanctuary", "Game Drives", "Baboon Cliff Viewpoint"],
-        image: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Lake_Nakuru_National_Park_%2816339504507%29.jpg"
-    },
-    {
-        id: 7,
-        name: "14 Falls",
-        description: "Marvel at the power of 14 cascading waterfalls in this popular day-trip destination.",
-        price: "$60",
-        duration: "1 day",
-        highlights: ["Waterfall Views", "Boat Rides", "Photography", "Nature Walks"],
-        image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/14_Falls_Kenya.jpg"
-    }
-];
-
-        // DOM Elements
-        const header = document.getElementById('header');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        const destinationsGrid = document.getElementById('destinations-grid');
-        const searchInput = document.getElementById('destination-search');
-        const contactForm = document.getElementById('contact-form');
-        const modal = document.getElementById('destination-modal');
-        const modalBody = document.getElementById('modal-body');
-        const closeModal = document.querySelector('.close');
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Render destinations
-        function renderDestinations(destinationsToRender = destinations) {
-            destinationsGrid.innerHTML = '';
-            
-            destinationsToRender.forEach(destination => {
-                const card = document.createElement('div');
-                card.className = 'destination-card';
-                card.innerHTML = `
-                    <div class="card-image" style="background: linear-gradient(45deg, #667eea, #764ba2);">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.7;">
-                            ${destination.image}
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">${destination.name}</h3>
-                        <p>${destination.description}</p>
-                        <p style="color: #666; margin: 0.5rem 0;"><strong>Duration:</strong> ${destination.duration}</p>
-                        <div class="card-price">${destination.price}</div>
-                    </div>
-                `;
-                
-                card.addEventListener('click', () => openDestinationModal(destination));
-                destinationsGrid.appendChild(card);
-            });
-        }
-
-        // Search functionality
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredDestinations = destinations.filter(destination =>
-                destination.name.toLowerCase().includes(searchTerm) ||
-                destination.description.toLowerCase().includes(searchTerm) ||
-                destination.highlights.some(highlight => 
-                    highlight.toLowerCase().includes(searchTerm)
-                )
-            );
-            renderDestinations(filteredDestinations);
-        });
-
-        // Open destination modal
-        function openDestinationModal(destination) {
-            modalBody.innerHTML = `
-                <h2 style="color: #2c3e50; margin-bottom: 1rem;">${destination.name}</h2>
-                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">${destination.image}</div>
-                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">${destination.description}</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                        <strong>Duration:</strong><br>${destination.duration}
-                    </div>
-                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                        <strong>Price:</strong><br><span style="color: #e74c3c; font-size: 1.2rem;">${destination.price}</span>
-                    </div>
-                </div>
-                
-                <h3 style="color: #2c3e50; margin-bottom: 1rem;">Highlights:</h3>
-                <ul style="list-style: none; padding: 0;">
-                    ${destination.highlights.map(highlight => 
-                        `<li style="background: #667eea; color: white; padding: 0.5rem 1rem; margin: 0.5rem 0; border-radius: 20px; display: inline-block; margin-right: 0.5rem;">✓ ${highlight}</li>`
-                    ).join('')}
-                </ul>
-                
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button style="background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer;" onclick="bookDestination('${destination.name}')">
-                        Book Now
-                    </button>
-                </div>
-            `;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal
-        closeModal.addEventListener('click', closeDestinationModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeDestinationModal();
-            }
-        });
-
-        function closeDestinationModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Book destination function
-        function bookDestination(destinationName) {
-            alert(`Booking request for ${destinationName} has been submitted! We'll contact you shortly with more details.`);
-            closeDestinationModal();
-            
-            // Scroll to contact form
-            document.getElementById('contact').scrollIntoView({
-                behavior: 'smooth'
-            });
-            
-            // Pre-fill destination in contact form
-            const destinationSelect = document.getElementById('destination');
-            const option = Array.from(destinationSelect.options).find(opt => 
-                opt.text.includes(destinationName.split(' ')[0])
-            );
-            if (option) {
-                destinationSelect.value = option.value;
-            }
-        }
-
-        // Contact form submission
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Get form data
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData);
-                
-                // Show success message
-                alert(`Thank you, ${data.name}! Your message has been sent successfully. We'll get back to you within 24 hours.`);
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Add some visual feedback
-                submitBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
-                submitBtn.innerHTML = '✓ Message Sent!';
-                
-                setTimeout(() => {
-                    submitBtn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
-                    submitBtn.innerHTML = originalText;
-                }, 3000);
-                
-            }, 2000);
-        });
-
-        // Newsletter subscription (if you want to add this feature)
-        function subscribeNewsletter() {
-            const email = prompt('Enter your email to subscribe to our newsletter:');
-            if (email && email.includes('@')) {
-                alert(`Thank you for subscribing! You'll receive travel tips and exclusive deals at ${email}`);
-            } else if (email) {
-                alert('Please enter a valid email address.');
-            }
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                closeDestinationModal();
-            }
-        });
-
-        // Weather widget simulation (you can integrate with a real weather API)
-        function updateWeatherInfo() {
-            const weatherInfo = document.getElementById('weather-info');
-            if (weatherInfo) {
-                const cities = ['Thika', 'Nairobi', 'Embu', 'Naivasha', 'Nakuru'];
-                const temps = ['-2°C', '-8°C', '-5°C', '3°C', '12°C'];
-                const conditions = ['❄️ Snowy', '🌨️ Blizzard', '☁️ Cloudy', '🌤️ Partly Cloudy', '☀️ Sunny'];
-                
-                const randomIndex = Math.floor(Math.random() * cities.length);
-                weatherInfo.innerHTML = `${cities[randomIndex]}: ${temps[randomIndex]} ${conditions[randomIndex]}`;
-            }
-        }
-
-        // Testimonials carousel (if you want to add testimonials)
-        const testimonials = [
-            {
-                name: "Sarah Johnson",
-                location: "New York, USA",
-                text: "Husky Travels made my dream trip to Alaska unforgettable! The attention to detail was incredible.",
-                rating: 5
-            },
-            {
-                name: "Marco Rodriguez",
-                location: "Barcelona, Spain",
-                text: "The Northern Lights tour in Norway was absolutely magical. Highly recommend Husky Travels!",
-                rating: 5
-            },
-            {
-                name: "Emily Chen",
-                location: "Tokyo, Japan",
-                text: "Professional service and amazing destinations. My Patagonia adventure exceeded all expectations.",
-                rating: 5
-            }
-        ];
-
-        // Initialize page
-        function initializePage() {
-            renderDestinations();
-            
-            // Add some dynamic content loading
-            setTimeout(() => {
-                updateWeatherInfo();
-            }, 1000);
-            
-            // Add scroll-triggered animations
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallax = document.querySelector('.hero');
-                if (parallax) {
-                    const speed = scrolled * 0.5;
-                    parallax.style.transform = `translateY(${speed}px)`;
-                }
-            });
-        }
-
-        // Cookie consent (basic implementation)
-        function showCookieConsent() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                const banner = document.createElement('div');
-                banner.style.cssText = `
-                    position: fixed;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background: #2c3e50;
-                    color: white;
-                    padding: 1rem;
-                    text-align: center;
-                    z-index: 1000;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: 1rem;
-                `;
-                
-                banner.innerHTML = `
-                    <span>This website uses cookies to enhance your experience. By continuing to browse, you agree to our use of cookies.</span>
-                    <button onclick="acceptCookies()" style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Accept</button>
-                `;
-                
-                document.body.appendChild(banner);
-                
-                window.acceptCookies = function() {
-                    localStorage.setItem('cookieConsent', 'true');
-                    banner.remove();
-                };
-            }
-        }
-
-        // Error handling for images and content
-        function handleImageErrors() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    this.style.display = 'none';
-                });
-            });
-        }
-
-        // Performance optimization - lazy loading
-        function setupLazyLoading() {
-            const cards = document.querySelectorAll('.destination-card');
-            
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease';
-                cardObserver.observe(card);
-            });
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            initializePage();
-            setupLazyLoading();
-            handleImageErrors();
-            
-            // Show cookie consent after a delay
-            setTimeout(showCookieConsent, 2000);
-            
-            // Add some interactive elements
-            const logo = document.getElementById('logo');
-            logo.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Service Worker registration for offline functionality (basic)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
-
-        // Dark/Light mode toggle (bonus feature)
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const isDark = document.body.classList.contains('dark-theme');
-            localStorage.setItem('darkMode', isDark);
-        }
-
-        // Load saved theme preference
-        const savedTheme = localStorage.getItem('darkMode');
-        if (savedTheme === 'true') {
-            document.body.classList.add('dark-theme');
-        }
-
-        // Add resize handler for responsive adjustments
-        window.addEventListener('resize', () => {
-            // Close mobile menu on resize
-            if (window.innerWidth > 768) {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
-        // Print styles handler
-        window.addEventListener('beforeprint', () => {
-            // Hide unnecessary elements when printing
-            document.querySelectorAll('.modal, .mobile-menu').forEach(el => {
-                el.style.display = 'none';
-            });
-        });
-
-        window.addEventListener('afterprint', () => {
-            // Restore elements after printing
-            document.querySelectorAll('.modal, .mobile-menu').forEach(el => {
-                el.style.display = '';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
